@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LayerFilters>
+	<Item name="Без внешних ссылок" layer="~*|*" color="*" linetype="*" flags="0" lineweight="*" plot="*" req="1"/>
+	<Item name="Служебные" layer="0,Defpoints" req="1"/>
+  <Item name="net" layer="*INET*"/>
+</LayerFilters>
