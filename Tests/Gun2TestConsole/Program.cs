@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gun2Core.Views.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,16 @@ namespace Gun2TestConsole
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+
+            UserWindowView winUser = new UserWindowView();
+            winUser.ShowDialog();
+
+            Console.WriteLine("Press any key");
+            Console.ReadKey();
+
         }
     }
 }
