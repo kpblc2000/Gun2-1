@@ -2,18 +2,18 @@
 <Exported>
 	<Layers>
 		<Item name="Арматура" ID="Арматура" lineweight="0,25" linetype="" color="Index = 7"/>
-    <Item name="Сети Электрика Слаботоч" ID="Слаботочка" lineweight="0,25" linetype="" color="Index = 7">
+    <Item name="Электрика Слаботоч" ID="Слаботочка" lineweight="0,25" linetype="" color="Index = 7">
       <Filters>
         <Filter>6. Связь</Filter>
       </Filters>
     </Item>
-    <Item name="Сети Электрика Пожар" ID="СлаботочкаПожар" lineweight="0,25" linetype="" color="Index = 6">
+    <Item name="Электрика Пожар" ID="СлаботочкаПожар" lineweight="0,25" linetype="" color="Index = 6">
       <Filters>
         <Filter>6. Связь</Filter>
         <Filter>Пожарная сигнализация</Filter>
       </Filters>
     </Item>
-    <Item name="Связь_АТС" ID="Автоматическая телефонная станция" lineweight="0,30" linetype="Continuous" color="Index = 6">
+    <Item name="АТС" ID="Автоматическая телефонная станция" lineweight="0,30" linetype="Continuous" color="6">
       <Filters>
         <Filter>6. Связь</Filter>
         <Filter>АТС</Filter>

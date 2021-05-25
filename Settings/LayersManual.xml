@@ -4,7 +4,8 @@
 		<Item name="0" lineweight="25" />
 		<Item name="Defpoints" color="7" />
 		<Item id="errors" name="_Ошибки" color="1" lineweight="0" linetype="Continuous" />
-		<Item id="tablet" name="Таблицы" color="7" linetype="Continuous" lineweight="0" />
+		<Item id="tables" name="Таблицы" color="7" linetype="Continuous" lineweight="0" />
+		<Item id="pivottables" name="Сводные Таблицы" color="7" linetype="Continuous" lineweight="0" />
 		<Item id="mark:error" name="_Ошибки" color="2" lineweight="0" linetype="Continuous" Description="Ошибки" />
 	</Layers>
 </Layer>
