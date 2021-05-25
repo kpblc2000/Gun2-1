@@ -26,7 +26,10 @@ namespace Gun2Core.ViewModels.Base
         public virtual string Title
         {
             get { return _Title; }
-            set { Set(ref _Title, value); }
+            set {
+                value = $"Gun2 v.{typeof(ViewModel).Assembly.GetName().Version} : {value.Trim()}";
+                Set(ref _Title, value); 
+            }
         }
 
         private string _Title;

@@ -7,22 +7,73 @@
         xmlns:vm="clr-namespace:Gun2Core.ViewModels"
         mc:Ignorable="d" 
         d:DesignHeight="350"
-        d:DesignWidth="800"
-        Title="Пользователи"
+        d:DesignWidth="600"
+        MinWidth="150"
+        MinHeight="150"
+        MaxHeight="400"
+        MaxWidth="600"
+        Title="{Binding Title}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
         >
     <Window.DataContext>
         <vm:UserViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <DockPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     DockPanel.Dock="Bottom"
                     >
-            <Button Content="OK"/>
-            <Button Content="Cancel"/>
+            <Button Content="OK"
+                    Width="{Binding ElementName=CancelButton, Path=ActualWidth}"
+                    IsDefault="True"
+                    />
+            <Button Content="Cancel"
+                    Name="CancelButton"
+                    IsCancel="True"
+                    />
         </StackPanel>
-        <DataGrid ItemsSource="{Binding Users}">
-            
+        <DataGrid ItemsSource="{Binding Users}"
+                  Margin="5"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*"
+                                        Header="ФИО пользователя"
+                                        SortMemberPath="LastName"
+                                        CanUserSort="True"
+                                        >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding LastName}"/>
+                                <TextBlock Text="{Binding FirstName, StringFormat=' \{0\}'}"/>
+                                <TextBlock Text="{Binding MidName, StringFormat=' \{0\}'}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Отдел"
+                                    Width="Auto"
+                                    Binding="{Binding Department}"/>
+                <DataGridCheckBoxColumn Width="Auto"
+                                        MinWidth="30"
+                                        Binding="{Binding IsDeveloper}"
+                                        >
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock Text="Разраб."
+                                   />
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
 </Window>

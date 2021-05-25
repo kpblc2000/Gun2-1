@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="Button">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="MinWidth" Value="23"/>
+        <Setter Property="MinHeight" Value="23"/>
+        <Style.Triggers>
+            <Trigger Property="IsCancel" Value="True">
+                <Setter Property="Foreground" Value="DarkRed"/>
+            </Trigger>
+            <Trigger Property="IsDefault" Value="True">
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
