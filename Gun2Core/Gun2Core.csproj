@@ -65,7 +65,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\Base\ViewModel.cs" />
+    <Compile Include="ViewModels\CoreSettingsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\Windows\CoreSettingsView.xaml.cs">
+      <DependentUpon>CoreSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\UserWindowView.xaml.cs">
       <DependentUpon>UserWindowView.xaml</DependentUpon>
     </Compile>
@@ -80,6 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\CoreSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
