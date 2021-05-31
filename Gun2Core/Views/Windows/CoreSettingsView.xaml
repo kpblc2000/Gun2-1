@@ -34,10 +34,13 @@
             <Button Content="ОК"
                     IsDefault="True"
                     Width="{Binding ElementName=CancelButton, Path=ActualWidth}"
+                    IsEnabled="{Binding CanSaveChanges}"
+                    Click="OnAcceptButtonClick"
                     />
             <Button Name="CancelButton"
                     Content="Отмена"
                     IsCancel="True"
+                    Click="OnCancelButtonClick"
                     />
         </StackPanel>
         <Grid>
@@ -80,14 +83,18 @@
                      Grid.Column="1"
                      Grid.ColumnSpan="2"
                      Text="{Binding DbConnectionString, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding CanChangeSettings}"
                      />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Text="{Binding SettingsFileName, UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="{Binding CanChangeSettings}"
                      />
             <Button Content="..."
                     Grid.Row="1"
                     Grid.Column="2"
+                    Command="{Binding GetSettingsFileNameCommand}"
+                    IsEnabled="{Binding CanChangeSettings}"
                     />
         </Grid>
     </DockPanel>

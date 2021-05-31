@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Gun2Core.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Gun2Core.Views.Windows
 {
@@ -22,6 +11,20 @@ namespace Gun2Core.Views.Windows
         public CoreSettingsView()
         {
             InitializeComponent();
+            vm = this.DataContext as CoreSettingsViewModel;
         }
+
+        private void OnAcceptButtonClick(object sender, RoutedEventArgs e)
+        {
+            vm.SaveSettigns();
+            Close();
+        }
+
+        private void OnCancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private CoreSettingsViewModel vm;
     }
 }

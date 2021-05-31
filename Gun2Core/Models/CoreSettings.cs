@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gun2Core.Models
 {
-    internal class CoreSettings
+    public class CoreSettings
     {
         public CoreSettings()
         {
@@ -18,20 +18,23 @@ namespace Gun2Core.Models
             _BaseKey.Close();
         }
 
-        public void Save()
+        internal void Save()
         {
+            RegistryKey curUser = Registry.CurrentUser;
+            RegistryKey _BaseKey = curUser.CreateSubKey(_ParentRegistryHive);
             _BaseKey.SetValue(_DbConnectionStringKey, DbConnectionString);
             _BaseKey.SetValue(_SettingsFileName, SettingsFileName);
             _BaseKey.Close();
         }
 
-        public string DbConnectionString { get; set; }
-        public string SettingsFileName { get; set; }
+        public string DbConnectionString { get; internal set; }
+        public string SettingsFileName { get; internal set; }
+
+        public string ParentRegistryHive { get => _ParentRegistryHive; }
 
         private readonly string _ParentRegistryHive = @"SOFTWARE\kpblc2000";
         private readonly string _DbConnectionStringKey = "DbConnectionString";
         private readonly string _SettingsFileName = "SettingsFileName";
-        private RegistryKey _BaseKey;
-        
+
     }
 }

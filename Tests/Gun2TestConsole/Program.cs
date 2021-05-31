@@ -13,8 +13,11 @@ namespace Gun2TestConsole
         static void Main(string[] args)
         {
 
-            UserWindowView winUser = new UserWindowView();
-            winUser.ShowDialog();
+            //UserWindowView winUser = new UserWindowView();
+            //winUser.ShowDialog();
+
+            CoreSettingsView winSettings = new CoreSettingsView();
+            winSettings.ShowDialog();
 
             Console.WriteLine("Press any key");
             Console.ReadKey();

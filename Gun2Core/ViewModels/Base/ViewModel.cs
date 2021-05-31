@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Gun2Core.Infrastructure;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Gun2Core.ViewModels.Base
@@ -26,10 +27,7 @@ namespace Gun2Core.ViewModels.Base
         public virtual string Title
         {
             get { return _Title; }
-            set {
-                value = $"Gun2 v.{typeof(ViewModel).Assembly.GetName().Version} : {value.Trim()}";
-                Set(ref _Title, value); 
-            }
+            set { Set(ref _Title, GeneralFunc.GetDialogTitle(value)); }
         }
 
         private string _Title;
