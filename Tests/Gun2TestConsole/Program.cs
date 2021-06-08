@@ -19,8 +19,8 @@ namespace Gun2TestConsole
 
             CoreInitialize.Initialize();
 
-            CoreSettingsView winSettings = new CoreSettingsView();
-            winSettings.ShowDialog();
+            //CoreSettingsView winSettings = new CoreSettingsView();
+            //winSettings.ShowDialog();
 
             Console.WriteLine("Press any key");
             Console.ReadKey();
