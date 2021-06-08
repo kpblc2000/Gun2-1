@@ -1,4 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settings>
-  
+  <ManualLayers>
+    <Item path="C:\Users\kpblc\source\repos\Gun2-1\Settings\LayersManual.xml" priority="4"/>
+    <Item path="\\server\library\layersmanual.xml" priority="5"/>
+    <Item path="\\server\library\layers.xml" priority="6"/>
+  </ManualLayers>
+  <ManualLayerFilters>
+    <Item path="C:\Users\kpblc\source\repos\Gun2-1\Settings\LayersFiltersManual.xml" priority="4"/>
+    <Item path="\\server\library\layersFiltersmanual.xml" priority="5"/>
+    <Item path="\\server\library\layersfilters.xml" priority="6"/>
+  </ManualLayerFilters>
+  <ProgramLayers>
+    <Item path="C:\Users\kpblc\source\repos\Gun2-1\Settings\LayersProgram.xml" priority="4"/>
+    <Item path="\\server\libraryProgram\LayersProgram.xml" priority="5"/>
+    <Item path="\\server\libraryProgram\layersfilters.xml" priority="6"/>
+  </ProgramLayers>
 </Settings>
