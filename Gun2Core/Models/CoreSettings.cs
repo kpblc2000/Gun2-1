@@ -12,16 +12,22 @@ namespace Gun2Core.Models
         public CoreSettings()
         {
             RegistryKey curUser = Registry.CurrentUser;
-            RegistryKey _BaseKey = curUser.CreateSubKey(_ParentRegistryHive);
+            RegistryKey _BaseKey = curUser.CreateSubKey(ParentRegistryHive);
+#if DEBUG
             DbConnectionString = _BaseKey.GetValue(_DbConnectionStringKey) as string;
             SettingsFileName = _BaseKey.GetValue(_SettingsFileName) as string;
+#else
+            DbConnectionString = "Data Source=SqlServer;Initial Catalog=Gun2Db;Integrated Security=True";
+            SettingsFileName = @"\\server\library\settings.xml";
+            Save();
+#endif
             _BaseKey.Close();
         }
 
         internal void Save()
         {
             RegistryKey curUser = Registry.CurrentUser;
-            RegistryKey _BaseKey = curUser.CreateSubKey(_ParentRegistryHive);
+            RegistryKey _BaseKey = curUser.CreateSubKey(ParentRegistryHive);
             _BaseKey.SetValue(_DbConnectionStringKey, DbConnectionString);
             _BaseKey.SetValue(_SettingsFileName, SettingsFileName);
             _BaseKey.Close();
@@ -30,7 +36,17 @@ namespace Gun2Core.Models
         public string DbConnectionString { get; internal set; }
         public string SettingsFileName { get; internal set; }
 
-        public string ParentRegistryHive { get => _ParentRegistryHive; }
+        public string ParentRegistryHive
+        {
+            get
+            {
+#if DEBUG
+                return @"SOFTWARE\kpblc2000\debug";
+#else
+                return _ParentRegistryHive;
+#endif
+            }
+        }
 
         private readonly string _ParentRegistryHive = @"SOFTWARE\kpblc2000";
         private readonly string _DbConnectionStringKey = "DbConnectionString";
