@@ -1,4 +1,5 @@
-﻿using Gun2Core.Views.Windows;
+﻿using Gun2Core.Infrastructure;
+using Gun2Core.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Gun2TestConsole
 
             //UserWindowView winUser = new UserWindowView();
             //winUser.ShowDialog();
+
+            CoreInitialize.Initialize();
 
             CoreSettingsView winSettings = new CoreSettingsView();
             winSettings.ShowDialog();

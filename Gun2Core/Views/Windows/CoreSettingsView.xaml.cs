@@ -16,12 +16,14 @@ namespace Gun2Core.Views.Windows
 
         private void OnAcceptButtonClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
             vm.SaveSettigns();
             Close();
         }
 
         private void OnCancelButtonClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             Close();
         }
 
