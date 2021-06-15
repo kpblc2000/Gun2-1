@@ -2,11 +2,13 @@
 using Gun2Core.Views.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace Gun2Core.Infrastructure
@@ -33,9 +35,11 @@ namespace Gun2Core.Infrastructure
             string manualLayerFile = GetCadLayerSettingsFile(xml, "ManualLayers");
             string manualLayerFilterFile = GetCadLayerSettingsFile(xml, "ManualLayerFilters");
             string programLayerFile = GetCadLayerSettingsFile(xml, "ProgramLayers");
-            // ToDo Проверить корректность чтения из settings.xml
-            // ToDo Создать чтение настроек слоев из "ручных" файлов
+
+            ObservableCollection<CadLayer> manualLayers = GetLayersFromManualFile(manualLayerFile);
+
             // ToDo Создать чтение настроек фильтров из "ручных" файлов
+            // ToDo Читать настройки слоев и фильтров из "программного" файла.
         }
 
         private static string GetCadLayerSettingsFile(XDocument Doc, string NodeName)
@@ -58,6 +62,62 @@ namespace Gun2Core.Infrastructure
                 return null;
             }
             return foundFile.Path;
+        }
+
+        private static ObservableCollection<CadLayer> GetLayersFromManualFile(string XmlFileName)
+        {
+            ObservableCollection<CadLayer> res = new ObservableCollection<CadLayer>();
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(XmlFileName);
+            XmlNodeList xmlLayersNode = doc.GetElementsByTagName("Layers");
+            foreach (XmlElement node in xmlLayersNode[0].ChildNodes)
+            {
+                if (node.HasAttribute("name"))
+                {
+                    string name = node.GetAttribute("name");
+                    CadLayer item = res.Where(o => o.Name == name).FirstOrDefault();
+
+                    if (item == null)
+                    {
+                        item = new CadLayer { Name = node.GetAttribute("name") };
+                        item.CadLayerIdNames = new List<string>();
+                        
+                        if (node.HasAttribute("linetype"))
+                        {
+                            item.Linetype = node.GetAttribute("linetype");
+                            if (node.HasAttribute("ltfile"))
+                            {
+                                item.LinetypeFileName = node.GetAttribute("ltfile");
+                            }
+                        }
+                        if (node.HasAttribute("lineweight"))
+                        {
+                            item.Lineweight = int.Parse(node.GetAttribute("lineweight"));
+                        }
+                        if (node.HasAttribute("color"))
+                        {
+                            item.IndexColor = byte.Parse(node.GetAttribute("color"));
+                        }
+                        else
+                        {
+                            item.IndexColor = 7;
+                        }
+                        if (node.HasAttribute("Description"))
+                        {
+                            item.Description = node.GetAttribute("Description");
+                        }
+                        if (node.HasAttribute("description") && string.IsNullOrEmpty(item.Description))
+                        {
+                            item.Description = node.GetAttribute("description");
+                        }
+                        res.Add(item);
+                    }
+                    item.CadLayerIdNames.Add(node.HasAttribute("id") ? node.GetAttribute("id") : item.Name);
+                }
+            }
+
+            return res;
         }
 
         private class NodeItem
